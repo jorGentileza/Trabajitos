@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "850899964701",
+    "project_id": "trabajitos-app-4a5e8",
+    "storage_bucket": "trabajitos-app-4a5e8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850899964701:android:ee94b2ec607d250bf647f4",
+        "android_client_info": {
+          "package_name": "com.trabajitos.apptrabajitos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "850899964701-mqqjeosi0dbg84kkerb26t6uq75p7om3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.trabajitos.apptrabajitos",
+            "certificate_hash": "ee36952c07e382dd381f752734e3c4b50dfe4f5c"
+          }
+        },
+        {
+          "client_id": "850899964701-hapquei3eicmlan75k78e9lp5hu5gjfq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfspJgftblcJMpbCUmPP1a2GSMecjZVXQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "850899964701-hapquei3eicmlan75k78e9lp5hu5gjfq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
