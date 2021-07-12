@@ -10,3 +10,6 @@ To Do:
 - Integrar Marcadores de "trabajitos"
 - Integrar Chat
 - CRUD sobre marcadores
+
+Urgent Review:
+-Spaghetti Code - must apply clean architecture
