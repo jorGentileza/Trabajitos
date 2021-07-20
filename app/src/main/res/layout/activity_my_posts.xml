@@ -55,7 +55,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/titles_font"
-                android:text="Mis Posteos"
+                android:text="Mis Trabajitos"
                 android:textColor="@color/black"
                 android:textSize="40sp" />
 

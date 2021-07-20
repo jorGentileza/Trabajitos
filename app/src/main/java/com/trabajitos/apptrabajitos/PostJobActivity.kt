@@ -52,6 +52,10 @@ class PostJobActivity : AppCompatActivity() {
         createJob()
     }
 
+    /*
+        Esta funcion crea un hasmap que sera pasado como parametro para agregarlo a la coleccion
+        de Firebase Firestore
+     */
     private fun createJob(){
 
         val job = hashMapOf(

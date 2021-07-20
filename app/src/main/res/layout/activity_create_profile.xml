@@ -71,7 +71,7 @@
                 android:layout_width="160dp"
                 android:layout_height="160dp"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/close" />
+                android:src="@drawable/no_foto" />
 
             <Space
                 android:layout_width="match_parent"
@@ -103,10 +103,10 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/titles_font"
                 android:gravity="center"
-                android:text="Areas de Trabajo"
+                android:text="Categorias de Trabajo"
                 android:textAlignment="center"
                 android:textColor="@color/black"
-                android:textSize="42sp" />
+                android:textSize="40sp" />
 
             <TextView
                 android:id="@+id/workSubTitle"
@@ -258,7 +258,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/titles_font"
                 android:gravity="center_horizontal"
-                android:text="Evidencias"
+                android:text="Credenciales"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="42sp" />
@@ -294,7 +294,7 @@
                         android:id="@+id/optionalPhotoOne"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-                        android:src="@drawable/close" />
+                        android:src="@drawable/no_foto" />
 
                     <Space
                         android:layout_width="24dp"
@@ -304,7 +304,7 @@
                         android:id="@+id/optionalPhotoTwo"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-                        android:src="@drawable/close" />
+                        android:src="@drawable/no_foto" />
 
                 </TableRow>
 
@@ -321,7 +321,7 @@
                         android:id="@+id/optionalPhotoThree"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-                        android:src="@drawable/close" />
+                        android:src="@drawable/no_foto" />
 
                     <Space
                         android:layout_width="24dp"
@@ -331,7 +331,7 @@
                         android:id="@+id/optionalPhotoFour"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-                        android:src="@drawable/close" />
+                        android:src="@drawable/no_foto"/>
 
                 </TableRow>
             </TableLayout>

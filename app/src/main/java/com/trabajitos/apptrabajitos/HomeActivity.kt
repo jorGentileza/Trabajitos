@@ -56,19 +56,18 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if(checkLocationPermission()){
-            buildLocationRequest()
-            buildLocationCallback()
+            if (checkLocationPermission()) {
+                buildLocationRequest()
+                buildLocationCallback()
 
-            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-            fusedLocationProviderClient.requestLocationUpdates(
-                locationRequest,
-                locationCallBack,
-                Looper.myLooper()
-            )
+                fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+                fusedLocationProviderClient.requestLocationUpdates(
+                    locationRequest,
+                    locationCallBack,
+                    Looper.myLooper()
+                )
             }
-        }
-        else{
+        } else {
             buildLocationRequest()
             buildLocationCallback()
 
@@ -81,6 +80,9 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+    /*
+        Este metodo construye la solicitud de localizacion
+     */
     private fun buildLocationRequest() {
         locationRequest = LocationRequest()
         locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
@@ -89,6 +91,9 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
         locationRequest.smallestDisplacement = 10f
     }
 
+    /*
+        Esta funcion construye  la respuesta a la geolocalizacion
+     */
     private fun buildLocationCallback() {
         locationCallBack = object : LocationCallback() {
             override fun onLocationResult(p0: LocationResult) {
@@ -113,6 +118,10 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }
 
+    /*
+        Con esta funcion verificamos los permisos del usuario,
+        de no tenerlos los solicita
+     */
     private fun checkLocationPermission(): Boolean {
         if (ContextCompat.checkSelfPermission(
                 this,
@@ -140,6 +149,9 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
             return true
     }
 
+    /*
+
+     */
     @SuppressLint("MissingSuperCall")
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onRequestPermissionsResult(
@@ -159,7 +171,8 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
                             buildLocationRequest()
                             buildLocationCallback()
 
-                            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
+                            fusedLocationProviderClient =
+                                LocationServices.getFusedLocationProviderClient(this)
                             fusedLocationProviderClient.requestLocationUpdates(
                                 locationRequest,
                                 locationCallBack,
@@ -167,15 +180,14 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
                             )
                             mMap!!.isMyLocationEnabled = true
                         }
-                }
-                else{
-                    Toast.makeText(this,"Permission Denegae",Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(this, "Permission Denegae", Toast.LENGTH_LONG).show()
                 }
             }
         }
     }
 
-    override fun onStop(){
+    override fun onStop() {
         fusedLocationProviderClient.removeLocationUpdates(locationCallBack)
         super.onStop()
     }
@@ -183,19 +195,18 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
-        if (ContextCompat.checkSelfPermission(
-                this,
-                android.Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
-        ){
-            mMap!!.isMyLocationEnabled= true
-        }
-            else{
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
                 mMap!!.isMyLocationEnabled = true
-            mMap.uiSettings.isZoomControlsEnabled = true
-        }
+            } else {
+                mMap!!.isMyLocationEnabled = true
+                mMap.uiSettings.isZoomControlsEnabled = true
+            }
         }
 
         setUp()
@@ -222,13 +233,16 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun showProfile() {
         startActivity(Intent(this, MyProfileActivity::class.java))
+        finish()
     }
 
     private fun postJob() {
         startActivity(Intent(this, PostJobActivity::class.java))
+        finish()
     }
 
     private fun myPosts() {
         startActivity(Intent(this, MyPostsActivity::class.java))
+        finish()
     }
 }

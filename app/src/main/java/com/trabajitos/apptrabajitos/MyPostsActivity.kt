@@ -24,12 +24,14 @@ class MyPostsActivity : AppCompatActivity() {
 
     }
 
+
     private fun setUp() {
         firebaseAuth = FirebaseAuth.getInstance()
         val firebaseUser = firebaseAuth.currentUser
         val email = firebaseUser!!.email.toString()
         var contador = 0
         firebaseFirestore = FirebaseFirestore.getInstance()
+        // buscamos la coleccion posts y recorremos todos los documentos.
         val posts = firebaseFirestore.collection("jobs").document(email)
         posts.collection("posts")
             .get()

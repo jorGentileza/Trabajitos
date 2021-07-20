@@ -56,13 +56,13 @@
                 android:layout_height="24dp" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Ofrecer Trabajo"
+                android:gravity="center"
+                android:text="Publicar Trabajito"
                 android:fontFamily="@font/titles_font"
                 android:textColor="@color/black"
-                android:textSize="48sp" />
+                android:textSize="40sp" />
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="24dp" />
