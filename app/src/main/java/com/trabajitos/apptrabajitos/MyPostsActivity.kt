@@ -26,44 +26,89 @@ class MyPostsActivity : AppCompatActivity() {
 
 
     private fun setUp() {
-        firebaseAuth = FirebaseAuth.getInstance()
-        val firebaseUser = firebaseAuth.currentUser
-        val email = firebaseUser!!.email.toString()
-        var contador = 0
         firebaseFirestore = FirebaseFirestore.getInstance()
-        // buscamos la coleccion posts y recorremos todos los documentos.
-        val posts = firebaseFirestore.collection("jobs").document(email)
-        posts.collection("posts")
-            .get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    when (contador) {
-                        0 -> {
-                            binding.firstTitle.text = document.getString("title")
-                            binding.firstPost.isVisible = true
-                        }
-                        1 -> {
-                            binding.secondTitle.text = document.getString("title")
-                            binding.secondPost.isVisible = true
-                        }
-                        2 -> {
-                            binding.thirdTitle.text = document.getString("title")
-                            binding.thirdPost.isVisible = true
-                        }
-                    }
-                    contador++
-                }
-            }.addOnFailureListener {
-                Toast.makeText(this, "no funco", Toast.LENGTH_LONG).show()
-            }
-
-        binding.firstMessage.setOnClickListener{
-            
-        }
-
+        firebaseAuth = FirebaseAuth.getInstance()
+        showPosts()
         binding.closeButton.setOnClickListener {
             startActivity(Intent(this, HomeActivity::class.java))
             finish()
         }
+    }
+
+    private fun showPosts() {
+        val firebaseUser = firebaseAuth.currentUser
+        val email = firebaseUser!!.email.toString()
+        var contador = 0
+
+        // buscamos la coleccion posts y recorremos todos los documentos.
+        firebaseFirestore.collection("posts")
+            .whereEqualTo("email", email)
+            .get()
+            .addOnSuccessListener { results ->
+                for (document in results) {
+                    when (contador) {
+                        0 -> {
+                            binding.firstTitle.text = document.getString("title")
+                            binding.firstPost.isVisible = true
+                            val id = document.id
+                            binding.firstDelete.setOnClickListener {
+                                firebaseFirestore.collection("posts").document(id)
+                                    .delete()
+                                    .addOnSuccessListener {
+                                        binding.firstPost.isVisible = false
+                                        Toast.makeText(
+                                            this,
+                                            "Trabajito Eliminado",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+                            }
+
+                        }
+                        1 -> {
+                            binding.secondTitle.text = document.getString("title")
+                            binding.secondPost.isVisible = true
+                            val id = document.id
+                            binding.secondDelete.setOnClickListener {
+                                firebaseFirestore.collection("posts").document(id)
+                                    .delete()
+                                    .addOnSuccessListener {
+                                        binding.secondPost.isVisible = false
+                                        Toast.makeText(
+                                            this,
+                                            "Trabajito Eliminado",
+                                            Toast.LENGTH_SHORT
+                                        )
+                                            .show()
+                                    }
+                            }
+
+                        }
+                        2 -> {
+                            binding.thirdTitle.text = document.getString("title")
+                            binding.thirdPost.isVisible = true
+                            val id = document.id
+                            binding.thirDelete.setOnClickListener {
+                                firebaseFirestore.collection("posts").document(id)
+                                    .delete()
+                                    .addOnSuccessListener {
+                                        binding.thirdPost.isVisible = false
+                                        Toast.makeText(
+                                            this,
+                                            "Trabajito Eliminado",
+                                            Toast.LENGTH_SHORT
+                                        )
+                                            .show()
+                                    }
+                            }
+
+                        }
+                    }
+                    contador++
+                }
+
+            }.addOnFailureListener {
+                Toast.makeText(this, "no funco", Toast.LENGTH_LONG).show()
+            }
     }
 }

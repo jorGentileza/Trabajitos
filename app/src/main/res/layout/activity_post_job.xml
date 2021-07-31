@@ -24,11 +24,10 @@
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/closeButton"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="#00FFFFFF"
-                app:srcCompat="@drawable/close"/>
+                app:srcCompat="@drawable/logito"/>
 
             <androidx.constraintlayout.utils.widget.ImageFilterView
                 android:layout_width="160dp"
@@ -110,6 +109,26 @@
 
             <Space
                 android:layout_width="match_parent"
+                android:layout_height="24dp" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:alwaysDrawnWithCache="false"
+                android:animateLayoutChanges="false"
+                android:animationCache="false"
+                android:background="@drawable/background"
+                android:backgroundTintMode="multiply"
+                android:dropDownWidth="wrap_content"
+                android:popupBackground="@drawable/white_panel"
+                android:spinnerMode="dropdown"
+                android:splitMotionEvents="true"
+                android:textAlignment="center" />
+
+            <Space
+                android:layout_width="match_parent"
                 android:layout_height="40dp" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -120,6 +139,7 @@
                 android:fontFamily="@font/titles_font"
                 android:layout_gravity="center"
                 android:background="@drawable/background"/>
+
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="24dp" />

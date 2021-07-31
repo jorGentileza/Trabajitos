@@ -21,7 +21,6 @@ class MyProfileActivity : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var firebaseFirestore: FirebaseFirestore
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMyProfileBinding.inflate(layoutInflater)
@@ -96,43 +95,46 @@ class MyProfileActivity : AppCompatActivity() {
                     Toast.makeText(this,"error ",Toast.LENGTH_LONG).show()
                 }
             }.addOnFailureListener{
-                Log.e(TAG,"error deleting photos because ${it.printStackTrace()}")
+                Log.e(TAG,"error  ${it.printStackTrace()}")
             }
 
-        val localFile = File.createTempFile("tempImage","jpg")
-
+        val localFileProfile = File.createTempFile("tempImage","jpg")
+        val localFileOne = File.createTempFile("tempImage","jpg")
+        val localFileTwo = File.createTempFile("tempImage","jpg")
+        val localFileThree = File.createTempFile("tempImage","jpg")
+        val localFileFour = File.createTempFile("tempImage","jpg")
 
         val storageProfile = FirebaseStorage.getInstance().reference.child("users/profilePicture/$email")
-        storageProfile.getFile(localFile).addOnSuccessListener {
-            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+        storageProfile.getFile(localFileProfile).addOnSuccessListener {
+            val bitmap = BitmapFactory.decodeFile(localFileProfile.absolutePath)
             binding.profileImageView.setImageBitmap(bitmap)
         }.addOnFailureListener{
             Toast.makeText(this,"puchis no funco",Toast.LENGTH_LONG).show()
         }
         val storageProofOne = FirebaseStorage.getInstance().reference.child("users/proofPhotos/$email/1")
-        storageProofOne.getFile(localFile).addOnSuccessListener {
-            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+        storageProofOne.getFile(localFileOne).addOnSuccessListener {
+            val bitmap = BitmapFactory.decodeFile(localFileOne.absolutePath)
             binding.proofOneImageView.setImageBitmap(bitmap)
             binding.proofOneImageView.isVisible = true
         }.addOnFailureListener{
         }
         val storageProofTwo = FirebaseStorage.getInstance().reference.child("users/proofPhotos/$email/2")
-        storageProofTwo.getFile(localFile).addOnSuccessListener {
-            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+        storageProofTwo.getFile(localFileTwo).addOnSuccessListener {
+            val bitmap = BitmapFactory.decodeFile(localFileTwo.absolutePath)
             binding.proofTwoImageView.setImageBitmap(bitmap)
             binding.proofTwoImageView.isVisible = true
         }.addOnFailureListener{
         }
         val storageProofThree = FirebaseStorage.getInstance().reference.child("users/proofPhotos/$email/3")
-        storageProofThree.getFile(localFile).addOnSuccessListener {
-            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+        storageProofThree.getFile(localFileThree).addOnSuccessListener {
+            val bitmap = BitmapFactory.decodeFile(localFileThree.absolutePath)
             binding.proofThreeImageView.setImageBitmap(bitmap)
             binding.proofThreeImageView.isVisible = true
         }.addOnFailureListener{
         }
         val storageProofFour = FirebaseStorage.getInstance().reference.child("users/proofPhotos/$email/4")
-        storageProofFour.getFile(localFile).addOnSuccessListener {
-            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+        storageProofFour.getFile(localFileFour).addOnSuccessListener {
+            val bitmap = BitmapFactory.decodeFile(localFileFour.absolutePath)
             binding.proofFourImageView.setImageBitmap(bitmap)
             binding.proofFourImageView.isVisible = true
         }.addOnFailureListener{

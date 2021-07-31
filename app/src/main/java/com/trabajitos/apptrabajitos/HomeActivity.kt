@@ -1,6 +1,7 @@
 package com.trabajitos.apptrabajitos
 
 import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
@@ -8,8 +9,10 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
+import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.*
@@ -23,17 +26,19 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.trabajitos.apptrabajitos.databinding.ActivityHomeBinding
 import java.util.jar.Manifest
 
-class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
+class HomeActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     private lateinit var mMap: GoogleMap
     private lateinit var mLastLocation: Location
     private lateinit var binding: ActivityHomeBinding
+    private lateinit var firebaseFirestore: FirebaseFirestore
     private var latitude: Double = 0.toDouble()
     private var longitude: Double = 0.toDouble()
-    private var mMarker: Marker? = null
+
 
     companion object {
         private const val MY_PERMISSION_CODE: Int = 1000
@@ -78,6 +83,7 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
                 Looper.myLooper()
             )
         }
+
     }
 
     /*
@@ -98,19 +104,10 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
         locationCallBack = object : LocationCallback() {
             override fun onLocationResult(p0: LocationResult) {
                 mLastLocation = p0!!.locations.get(p0!!.locations.size - 1)
-                if (mMarker != null) {
-                    mMarker!!.remove()
-                }
                 latitude = mLastLocation.latitude
                 longitude = mLastLocation.longitude
 
                 val latLng = LatLng(latitude, longitude)
-                val markerOptions = MarkerOptions()
-                    .position(latLng)
-                    .title("mi posicion")
-                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
-
-                mMarker = mMap!!.addMarker(markerOptions)
 
                 mMap!!.moveCamera(CameraUpdateFactory.newLatLng(latLng))
                 mMap.animateCamera(CameraUpdateFactory.zoomTo(15f))
@@ -181,7 +178,7 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
                             mMap!!.isMyLocationEnabled = true
                         }
                 } else {
-                    Toast.makeText(this, "Permission Denegae", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Permission Denied", Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -208,11 +205,115 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
                 mMap.uiSettings.isZoomControlsEnabled = true
             }
         }
-
         setUp()
     }
 
+
     private fun setUp() {
+        mMap.setOnMarkerClickListener(this)
+
+        firebaseFirestore = FirebaseFirestore.getInstance()
+        firebaseFirestore.collection("posts")
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    val lat: Double = document.getString("lat")!!.toDouble()
+                    val long: Double = document.getString("long")!!.toDouble()
+                    val title = document.getString("title")
+                    val id = document.id
+                    val category = document.getString("category")
+                    val position = LatLng(lat, long)
+
+                    when (category) {
+                        "belleza" -> {
+                            mMap.addMarker(
+                                MarkerOptions()
+                                    .position(position)
+                                    .title(title)
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.belleza))
+                                    .snippet(id)
+                            )
+                        }
+                        "construccion" ->{
+                            mMap.addMarker(
+                                MarkerOptions()
+                                    .position(position)
+                                    .title(title)
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.construccion))
+                                    .snippet(id)
+                            )
+                        }
+                        "educacion" -> {
+                            mMap.addMarker(
+                                MarkerOptions()
+                                    .position(position)
+                                    .title(title)
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.educacion))
+                                    .snippet(id)
+                            )
+                        }
+                        "holistica" -> {
+                            mMap.addMarker(
+                                MarkerOptions()
+                                    .position(position)
+                                    .title(title)
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.holistica))
+                                    .snippet(id)
+                            )
+                        }
+                        "jardineria" -> {
+                            mMap.addMarker(
+                                MarkerOptions()
+                                    .position(position)
+                                    .title(title)
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.jardineria))
+                                    .snippet(id)
+                            )
+                        }
+                        "mascotas" -> {
+                            mMap.addMarker(
+                                MarkerOptions()
+                                    .position(position)
+                                    .title(title)
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.mascotas))
+                                    .snippet(id)
+                            )
+                        }
+                        "medicina" -> {
+                            mMap.addMarker(
+                                MarkerOptions()
+                                    .position(position)
+                                    .title(title)
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.medicina))
+                                    .snippet(id)
+                            )
+                        }
+                        "moda" -> {
+                            mMap.addMarker(
+                                MarkerOptions()
+                                    .position(position)
+                                    .title(title)
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.moda))
+                                    .snippet(id)
+                            )
+                        }
+                        "tecnologia" -> {
+                            mMap.addMarker(
+                                MarkerOptions()
+                                    .position(position)
+                                    .title(title)
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.tecnologia))
+                                    .snippet(id)
+                            )
+                        }
+                    }
+
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d(TAG, "Error getting documents: ", exception)
+            }
+
         binding.navigationBar.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.action_logout -> logout()
@@ -225,10 +326,30 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
 
     }
 
-    private fun logout() {
-        FirebaseAuth.getInstance().signOut()
-        startActivity(Intent(this, AuthActivity::class.java))
+    override fun onMarkerClick(p0: Marker): Boolean {
+
+        val markerid = p0.snippet.toString()
+        val intent = Intent(this, showJobActivity::class.java)
+        intent.putExtra("id", markerid)
+        startActivity(intent)
         finish()
+        return false
+    }
+
+    private fun logout() {
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage("Seguro que deseas salir?")
+            .setCancelable(false)
+            .setPositiveButton("si"){ dialog,id ->
+                FirebaseAuth.getInstance().signOut()
+                startActivity(Intent(this, AuthActivity::class.java))
+                finish()
+            }
+            .setNegativeButton("no"){dialog,id ->
+                dialog.dismiss()
+            }
+        val alert = builder.create()
+        alert.show()
     }
 
     private fun showProfile() {
@@ -237,7 +358,12 @@ class HomeActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun postJob() {
-        startActivity(Intent(this, PostJobActivity::class.java))
+        val intent = Intent(this, PostJobActivity::class.java)
+        val latitud = latitude.toString()
+        val longitud = longitude.toString()
+        intent.putExtra("longitud", longitud)
+        intent.putExtra("latitud", latitud)
+        startActivity(intent)
         finish()
     }
 

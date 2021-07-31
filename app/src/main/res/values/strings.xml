@@ -2,4 +2,16 @@
     <string name="app_name">App Trabajitos</string>
     <string name="title_activity_main">Map</string>
     <string name="title_activity_home">Map</string>
+    <string-array name="categories">
+        <item>Seleccione categoria</item>
+        <item>belleza</item>
+        <item>construccion</item>
+        <item>educacion</item>
+        <item>holistica</item>
+        <item>jardineria</item>
+        <item>mascotas</item>
+        <item>medicina</item>
+        <item>moda</item>
+        <item>tecnologia</item>
+    </string-array>
 </resources>

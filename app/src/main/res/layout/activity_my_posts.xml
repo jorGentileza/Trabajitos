@@ -23,11 +23,10 @@
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/closeButton"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="#00FFFFFF"
-                app:srcCompat="@drawable/close" />
+                app:srcCompat="@drawable/logito" />
 
             <androidx.constraintlayout.utils.widget.ImageFilterView
                 android:layout_width="160dp"
@@ -63,13 +62,13 @@
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/firstPost"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
                 android:layout_marginTop="64dp"
                 android:layout_marginRight="24dp"
                 android:background="@drawable/white_panel"
                 android:visibility="gone"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/firstTitle"
@@ -79,40 +78,52 @@
                     android:gravity="center_vertical"
                     android:text="  Titulo Trabajo  "
                     android:textColor="@color/black"
+                    android:layout_gravity="center"
                     android:textSize="20sp" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/firstMessage"
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="wrap_content"
-                    android:layout_marginLeft="4dp"
-                    android:layout_height="24dp"
-                    android:background="@drawable/background"
-                    android:fontFamily="@font/titles_font"
-                    android:text="Mensajes"
-                    android:textSize="12sp" />
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/firstEdit"
-                    android:layout_width="wrap_content"
-                    android:layout_marginLeft="4dp"
-                    android:layout_height="24dp"
-                    android:background="@drawable/background"
-                    android:fontFamily="@font/titles_font"
-                    android:text="Editar"
-                    android:textSize="12sp" />
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/firstMessage"
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_height="24dp"
+                        android:background="@drawable/background"
+                        android:fontFamily="@font/titles_font"
+                        android:text="Editar"
+                        android:textSize="12sp" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/firstDelete"
+                        android:layout_width="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_height="24dp"
+                        android:background="@drawable/background"
+                        android:fontFamily="@font/titles_font"
+                        android:text="Borrar"
+                        android:textSize="12sp" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+              <Space
+                  android:layout_width="match_parent"
+                  android:layout_height="20dp"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/secondPost"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginRight="24dp"
                 android:background="@drawable/white_panel"
                 android:visibility="gone"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/secondTitle"
@@ -122,7 +133,14 @@
                     android:gravity="center_vertical"
                     android:text="  Titulo Trabajo  "
                     android:textColor="@color/black"
+                    android:layout_gravity="center"
                     android:textSize="20sp" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center">
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/secondMessage"
@@ -131,31 +149,37 @@
                     android:layout_height="24dp"
                     android:background="@drawable/background"
                     android:fontFamily="@font/titles_font"
-                    android:text="Mensajes"
+                    android:text="Editar"
                     android:textSize="12sp" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/secondEdit"
+                    android:id="@+id/secondDelete"
                     android:layout_width="wrap_content"
                     android:layout_marginLeft="4dp"
                     android:layout_height="24dp"
                     android:background="@drawable/background"
                     android:fontFamily="@font/titles_font"
-                    android:text="Editar"
+                    android:text="Borrar"
                     android:textSize="12sp" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+              <Space
+                  android:layout_width="match_parent"
+                  android:layout_height="20dp"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
             
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/thirdPost"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginRight="24dp"
                 android:background="@drawable/white_panel"
                 android:visibility="gone"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/thirdTitle"
@@ -164,8 +188,15 @@
                     android:fontFamily="@font/subtitles_font"
                     android:gravity="center_vertical"
                     android:text="  Titulo Trabajo  "
+                    android:layout_gravity="center"
                     android:textColor="@color/black"
                     android:textSize="20sp" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center">
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/thirdMessage"
@@ -174,19 +205,24 @@
                     android:layout_height="24dp"
                     android:background="@drawable/background"
                     android:fontFamily="@font/titles_font"
-                    android:text="Mensajes"
+                    android:text="Editar"
                     android:textSize="12sp" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/thirdEdit"
+                    android:id="@+id/thirDelete"
                     android:layout_width="wrap_content"
                     android:layout_marginLeft="4dp"
                     android:layout_height="24dp"
                     android:background="@drawable/background"
                     android:fontFamily="@font/titles_font"
-                    android:text="Editar"
+                    android:text="Borrar"
                     android:textSize="12sp" />
 
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+              <Space
+                  android:layout_width="match_parent"
+                  android:layout_height="20dp"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
